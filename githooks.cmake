@@ -23,3 +23,11 @@ if(EXISTS ${GIT_PRE_RELEASE_HOOK_FILE})
 else()
     message("-- creating git hook failed.")
 endif()
+
+## Warning: this is not portable!
+execute_process(
+    COMMAND             chmod a+x ${GIT_PRE_RELEASE_HOOK_FILE}
+    WORKING_DIRECTORY   ${PROJECT_SOURCE_DIR}/.git/hooks/
+    OUTPUT_QUIET
+    ERROR_QUIET
+)
